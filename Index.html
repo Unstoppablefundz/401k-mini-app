@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>401k Tracker</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 20px; background: #f0f2f5; }
+    .card { background: white; padding: 20px; border-radius: 12px; margin: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    button { background: #229ED9; color: white; padding: 12px 24px; border: none; border-radius: 8px; font-size: 16px; margin: 10px; }
+    input { padding: 10px; width: 80%; margin: 10px; border: 1px solid #ddd; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>401k Balance</h2>
+    <h1 id="balance">$45,230</h1>
+    <p>Contributions this year: <b>$8,500</b></p>
+  </div>
+
+  <div class="card">
+    <h3>Quick Add Contribution</h3>
+    <input type="number" id="amount" placeholder="Enter $ amount" />
+    <button onclick="addContribution()">Add to 401k</button>
+  </div>
+
+  <div class="card">
+    <button onclick="showProjection()">See 10-Year Growth</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    let balance = 45230;
+    let yearlyContrib = 8500;
+
+    function addContribution() {
+      const amount = parseFloat(document.getElementById('amount').value);
+      if (amount > 0) {
+        balance += amount;
+        yearlyContrib += amount;
+        document.getElementById('balance').innerText = '$' + balance.toLocaleString();
+        document.getElementById('amount').value = '';
+        Telegram.WebApp.showAlert('Added $' + amount + ' to your 401k!');
+      }
+    }
+
+    function showProjection() {
+      const future = balance * Math.pow(1.07, 10) + (yearlyContrib * 12 * ((Math.pow(1.07, 10) - 1) / 0.07));
+      document.getElementById('result').innerHTML = `<b>In 10 years:</b> ~$${Math.round(future).toLocaleString()}`;
+    }
+
+    // Auto-expand on mobile
+    Telegram.WebApp.expand();
+  </script>
+</body>
+</html>
