@@ -1,25 +1,58 @@
-# 401k Mini App for Telegram
+# Vault401k – 401(k) Tracker Mini App
 
-**Track your 401(k) in 1 tap — inside Telegram!**
+**Track your 401(k) balance & growth — right inside Telegram!**
+
+---
+
+## Live Bot
+[@Vault401k_bot](https://t.me/Vault401k_bot)  
+**Tap "Open 401k" to start!**
+
+---
 
 ## Features
-- Live balance
-- Add contributions
-- 10-year growth calculator
-- **No backend, no cost**
-- Data saved per user
+- Real-time 401(k) balance
+- Add contributions instantly
+- 10-year growth projection (7% avg)
+- **Saves per user** (via Telegram ID)
+- **No backend, no cost, no login**
+- Beautiful glass-style UI
 
-## Live
-[t.me/my401k_tracker_bot](https://t.me/my401k_tracker_bot)
+---
 
-## Setup
-1. Create bot via @BotFather
-2. Deploy on [Vercel](https://vercel.com)
-3. Link via `/setmenubutton`
+## How to Use
+1. Open: [@Vault401k_bot](https://t.me/Vault401k_bot)
+2. Tap **"Open 401k"**
+3. Start tracking!
 
-## Made with
-- Telegram Web Apps
-- Vercel
-- HTML + JS
+---
 
-**Star if you like it!**
+## Setup (For Developers)
+
+### 1. Deploy (Free)
+- Go to [Vercel](https://vercel.com)
+- Import this repo
+- Deploy → Get URL
+
+### 2. Link to Bot
+1. Talk to **@BotFather**
+2. Send: `/setmenubutton`
+3. Select: **@Vault401k_bot**
+4. Button Text: `Open 401k`
+5. URL: `https://your-app.vercel.app`
+
+---
+
+## Tech
+- **Telegram Web Apps**
+- **Vercel** (free hosting)
+- **localStorage** (per user)
+- Pure HTML/CSS/JS
+
+---
+
+## Customize
+Edit `index.html`:
+```js
+let balance = 45230;     // ← Your starting balance
+let yearlyContrib = 8500; // ← Annual contribution
